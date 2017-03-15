@@ -16,7 +16,8 @@ from pyspark.sql import SQLContext
 
 sqlContext = SQLContext(sc)
 jdbcurl = "jdbc:mysql://quickstart.cloudera:3306/retail_db?user=retail_dba&password=cloudera"
-df = sqlContext.load(source="jdbc", url=jdbcurl, dbtable="departments")
+# df = sqlContext.load(source="jdbc", url=jdbcurl, dbtable="departments")
+df = sqlContext.read.jdbc(url=jdbcurl, table="departments")
 
 for rec in df.collect():
   print(rec)
